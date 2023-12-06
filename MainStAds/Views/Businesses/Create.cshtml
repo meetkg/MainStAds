@@ -1,0 +1,88 @@
+﻿@model MainStAds.Application.DTOs.BusinessDto
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<style>
+    .mui-form {
+        width: 100%;
+        max-width: 500px;
+        margin: auto;
+    }
+
+    .mui-textfield {
+        margin: 16px 0;
+        width: 100%;
+    }
+
+        .mui-textfield label {
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 8px;
+            display: inline-block;
+        }
+
+        .mui-textfield input {
+            width: 100%;
+            border: none;
+            font-size: 16px;
+            padding: 8px;
+            border-bottom: 1px solid #ccc;
+        }
+
+    .btn-container {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .mui-btn {
+        background-color: #3f51b5;
+        color: #fff;
+        padding: 12px 24px;
+        border-radius: 4px;
+        text-transform: uppercase;
+        margin-top: 20px;
+        text-decoration: none;
+    }
+</style>
+
+<h1>Create</h1>
+
+<form asp-action="Create" enctype="multipart/form-data" class="mui-form">
+    <div class="mui-textfield">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" />
+    </div>
+    <div class="mui-textfield">
+        <label asp-for="Category"></label>
+        <input asp-for="Category" />
+    </div>
+    <div class="mui-textfield">
+        <label asp-for="Description"></label>
+        <input asp-for="Description" />
+    </div>
+    <div class="mui-textfield">
+        <label asp-for="Address"></label>
+        <input asp-for="Address" />
+    </div>
+    <div class="mui-textfield">
+        <label asp-for="Link"></label>
+        <input asp-for="Link" />
+    </div>
+    <div class="mui-textfield">
+        <label for="Image">Image</label>
+        <input type="file" id="Image" name="Image" />
+    </div>
+    <div class="btn-container">
+        <button type="submit" class="mui-btn">Create</button>
+        <a asp-action="Index" class="mui-btn mui-btn-back">Back to List</a>
+    </div>
+</form>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

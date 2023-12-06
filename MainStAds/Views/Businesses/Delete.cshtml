@@ -1,0 +1,86 @@
+﻿@model MainStAds.Application.DTOs.BusinessDto
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<style>
+    .mui-btn {
+        background-color: #f44336;
+        color: #fff;
+        padding: 6px 12px;
+        border-radius: 4px;
+        text-decoration: none;
+        cursor: pointer;
+        margin-right: 5px;
+    }
+    .mui-btn i.material-icons {
+        vertical-align: middle;
+        margin-right: 4px;
+    }
+    .mui-dl {
+        margin-top: 16px;
+    }
+    .mui-dl dt {
+        font-weight: bold;
+    }
+    .mui-dl dd {
+        margin-left: 0;
+    }
+    .responsive-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    @@media (min-width: 768px) {
+        .responsive-container {
+            flex-direction: row;
+            justify-content: flex-start;
+            gap: 20px;
+        }
+    }
+</style>
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Business</h4>
+    <hr />
+    <div class="responsive-container">
+        @if (Model.ImageData != null)
+        {
+            <div>
+                <dt>Image</dt>
+                <dd>
+                    <img src="data:image/@Model.ImageType;base64,@Convert.ToBase64String(Model.ImageData)" alt="@Model.Name" width="200" />
+                </dd>
+            </div>
+        }
+        <div>
+            <dl class="mui-dl">
+                <dt>Name</dt>
+                <dd>@Model.Name</dd>
+                <dt>Category</dt>
+                <dd>@Model.Category</dd>
+                <dt>Description</dt>
+                <dd>@Model.Description</dd>
+                <dt>Address</dt>
+                <dd>@Model.Address</dd>
+                <dt>Link</dt>
+                <dd>@Model.Link</dd>
+            </dl>
+            <form asp-action="Delete">
+                <input type="hidden" asp-for="Id" />
+                <button type="submit" class="mui-btn"><i class="material-icons">delete</i>Delete</button> |
+                <a asp-action="Index" class="mui-btn"><i class="material-icons">arrow_back</i>Back to List</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

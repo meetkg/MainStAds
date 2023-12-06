@@ -1,0 +1,101 @@
+﻿@model IEnumerable<MainStAds.Application.DTOs.BusinessDto>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<style>
+    /* Button Styles */
+    .mui-btn {
+        background-color: transparent;
+        padding: 6px 12px;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+        .mui-btn:hover {
+            color: #fff;
+        }
+
+        .mui-btn i.material-icons {
+            vertical-align: middle;
+        }
+
+        .mui-btn.edit:hover {
+            background-color: #4CAF50;
+        }
+
+        .mui-btn.details:hover {
+            background-color: #2196F3;
+        }
+
+        .mui-btn.delete:hover {
+            background-color: #F44336;
+        }
+    /* Table Styles */
+    .mui-table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-top: 16px;
+    }
+
+        .mui-table th, .mui-table td {
+            border: 1px solid #ccc;
+            text-align: left;
+            padding: 8px;
+        }
+
+        .mui-table th {
+            background-color: #f2f2f2;
+        }
+    /* Action Buttons Wrapper */
+    .action-btns {
+        display: flex;
+        flex-direction: row;
+    }
+</style>
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create" class="mui-btn"><i class="material-icons">add</i>Create New</a>
+</p>
+
+<table class="mui-table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Description</th>    
+            <th>Address</th>
+            <th>Link</th>
+            <th>Image</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Category</td>
+                <td>@item.Description</td>
+                <td>@item.Address</td>
+                <td><a href="@item.Link" target="_blank">@item.Link</a></td>
+                <td>
+                    @if (item.ImageData != null)
+                    {
+                        <img src="data:image/png;base64,@Convert.ToBase64String(item.ImageData)" width="100" />
+                    }
+                </td>
+                <td>
+                    <div class="action-btns">
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="mui-btn edit"><i class="material-icons">edit</i></a>
+                        <a asp-action="Details" asp-route-id="@item.Id" class="mui-btn details"><i class="material-icons">visibility</i></a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="mui-btn delete"><i class="material-icons">delete</i></a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

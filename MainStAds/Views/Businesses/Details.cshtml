@@ -1,0 +1,83 @@
+﻿@model MainStAds.Application.DTOs.BusinessDto
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<style>
+    .mui-btn {
+        background-color: #f44336;
+        color: #fff;
+        padding: 6px 12px;
+        border-radius: 4px;
+        text-decoration: none;
+        cursor: pointer;
+        margin-right: 5px;
+    }
+    .mui-btn i.material-icons {
+        vertical-align: middle;
+        margin-right: 4px;
+    }
+    .mui-dl {
+        margin-top: 16px;
+        margin-left: 16px;
+    }
+    .mui-dl dt {
+        font-weight: bold;
+    }
+    .mui-dl dd {
+        margin-left: 0;
+    }
+    .responsive-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    @@media (min-width: 768px) {
+        .responsive-container {
+            flex-direction: row;
+            justify-content: flex-start;
+        }
+    }
+</style>
+
+<h1>Details</h1>
+
+<h3>Business Information</h3>
+<div>
+    <hr />
+    <div class="responsive-container">
+        @if (Model.ImageData != null)
+        {
+            <div>
+                <dt>Image</dt>
+                <dd>
+                    <img src="data:image/@Model.ImageType;base64,@Convert.ToBase64String(Model.ImageData)" alt="@Model.Name" width="200" />
+                </dd>
+            </div>
+        }
+        <dl class="mui-dl">
+            <dt>Name</dt>
+            <dd>@Model.Name</dd>
+            <dt>Category</dt>
+            <dd>@Model.Category</dd>
+            <dt>Description</dt>
+            <dd>@Model.Description</dd>
+            <dt>Address</dt>
+            <dd>@Model.Address</dd>
+            <dt>Link</dt>
+            <dd>@Model.Link</dd>
+            <form asp-action="Edit">
+                <input type="hidden" asp-for="Id" />
+                <button type="submit" class="mui-btn"><i class="material-icons">edit</i>Edit</button> |
+                <a asp-action="Index" class="mui-btn"><i class="material-icons">arrow_back</i>Back to List</a>
+            </form>
+        </dl>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

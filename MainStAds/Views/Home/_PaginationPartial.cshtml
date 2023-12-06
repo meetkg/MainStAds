@@ -1,0 +1,56 @@
+﻿<div id="paginationControls" class="pagination-controls"></div>
+
+<style>
+    .pagination-controls {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 1.5em 0;
+    }
+
+        .pagination-controls button, .arrow-btn-big {
+            margin: 0 5px;
+            padding: 8px 12px;
+            background-color: #f4f4f4;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+            cursor: pointer;
+            outline: none;
+        }
+
+            .pagination-controls button:hover, .arrow-btn-big:hover {
+                background-color: #e2e2e2;
+            }
+
+        .pagination-controls .arrow-btn {
+            font-size: 1.5em;
+            background: none;
+            border: none;
+            color: #001F3F;
+        }
+
+    .arrow-btn-big {
+        font-size: 2em;
+        background: none;
+        border: none;
+        color: #001F3F;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1000;
+    }
+
+        .arrow-btn-big.left {
+            left: 10px;
+        }
+
+        .arrow-btn-big.right {
+            right: 10px;
+        }
+
+    .pagination-controls button.active-page {
+        background-color: #2196F3;
+        color: white;
+    }
+</style>

@@ -1,0 +1,17 @@
+﻿@model IEnumerable<MainStAds.Application.DTOs.BusinessDto>
+
+@{
+    ViewData["Title"] = "MainStAds";
+}
+
+<partial name="_HeaderPartial" />
+<partial name="_FiltersPartial" />
+<div id="currentLocation" class="location">
+    <p>Your Current Location: <span id="locationInfo">Loading...</span></p>
+</div>
+<partial name="_BusinessContainerPartial" />
+<partial name="_PaginationPartial" />
+
+@section Scripts {
+    <script src="~/js/mainStAds.js"></script>
+}
